@@ -5,16 +5,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
 @ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Author {
 
   @Id
@@ -26,5 +31,6 @@ public class Author {
   private String lastName;
 
   @ManyToMany(mappedBy = "authors")
-  private Set<Book> books;
+  @Builder.Default
+  private Set<Book> books = new HashSet<>();
 }

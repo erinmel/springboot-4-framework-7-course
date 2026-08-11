@@ -4,11 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,21 +17,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Book {
-
+public class Publisher {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @EqualsAndHashCode.Include
   private Long id;
 
-  private String title;
-  private String isbn;
-
-  @ManyToMany
-  @JoinTable(
-      name = "author_book",
-      joinColumns = @JoinColumn(name = "book_id"),
-      inverseJoinColumns = @JoinColumn(name = "author_id"))
-  @Builder.Default
-  private Set<Author> authors = new HashSet<>();
+  private String publisherName;
+  private String address;
+  private String city;
+  private String state;
+  private String zipCode;
 }
