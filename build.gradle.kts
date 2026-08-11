@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
+    id("com.diffplug.spotless") version "8.9.0"
 }
 
 group = "com.emelgoza"
@@ -12,6 +13,15 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
     }
+}
+
+spotless.java {
+    targetExclude("build/**")
+    target("src/**/*.java")
+    googleJavaFormat("1.36.1")
+    removeUnusedImports()
+    trimTrailingWhitespace()
+
 }
 
 repositories {
