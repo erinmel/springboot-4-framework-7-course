@@ -65,6 +65,9 @@ public class BootstrapData implements CommandLineRunner {
     log.info("Saved in Bootstrap");
     log.info("Number of Authors: {}", authorRepository.count());
     log.info("Number of Books: {}", bookRepository.count());
-    log.info("In Memory Publisher {} has {} books", publisher.getPublisherName(), publisher.getBooks().stream().map(Book::getTitle).toList());
+    log.info(
+        "In Memory Publisher {} has {} books",
+        publisher.getPublisherName(),
+        publisher.getBooks().stream().map(Book::getTitle).toList());
   }
 }
