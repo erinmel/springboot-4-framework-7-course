@@ -3,7 +3,7 @@ package com.emelgoza.sfudemy.bootstrap;
 import com.emelgoza.sfudemy.domain.Author;
 import com.emelgoza.sfudemy.domain.Book;
 import com.emelgoza.sfudemy.domain.Publisher;
-import com.emelgoza.sfudemy.repository.AuthRepository;
+import com.emelgoza.sfudemy.repository.AuthorRepository;
 import com.emelgoza.sfudemy.repository.BookRepository;
 import com.emelgoza.sfudemy.repository.PublisherRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,15 +14,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class BootstrapData implements CommandLineRunner {
 
-  private final AuthRepository authRepository;
+  private final AuthorRepository authorRepository;
   private final BookRepository bookRepository;
   private final PublisherRepository publisherRepository;
 
   public BootstrapData(
-      AuthRepository authRepository,
+      AuthorRepository authorRepository,
       BookRepository bookRepository,
       PublisherRepository publisherRepository) {
-    this.authRepository = authRepository;
+    this.authorRepository = authorRepository;
     this.bookRepository = bookRepository;
     this.publisherRepository = publisherRepository;
   }
@@ -42,23 +42,29 @@ public class BootstrapData implements CommandLineRunner {
             .zipCode("12345")
             .build();
 
-    Author ericSaved = authRepository.save(eric);
-    Author rodSaved = authRepository.save(rod);
-    Book dddSaved = bookRepository.save(ddd);
-    Book noEJBSaved = bookRepository.save(noEJB);
-    Publisher publisherSaved = publisherRepository.save(publisher);
+    eric = authorRepository.save(eric);
+    rod = authorRepository.save(rod);
+    ddd = bookRepository.save(ddd);
+    noEJB = bookRepository.save(noEJB);
+    publisher = publisherRepository.save(publisher);
 
-    ericSaved.getBooks().add(dddSaved);
-    rodSaved.getBooks().add(noEJBSaved);
+    ddd.addPublisher(publisher);
+    noEJB.addPublisher(publisher);
 
-    authRepository.save(ericSaved);
-    authRepository.save(rodSaved);
+    bookRepository.save(ddd);
+    bookRepository.save(noEJB);
+
+    eric.addBook(ddd);
+    rod.addBook(noEJB);
+
+    authorRepository.save(eric);
+    authorRepository.save(rod);
+    bookRepository.save(ddd);
+    bookRepository.save(noEJB);
 
     log.info("Saved in Bootstrap");
-    log.info("Number of Authors: {}", authRepository.count());
+    log.info("Number of Authors: {}", authorRepository.count());
     log.info("Number of Books: {}", bookRepository.count());
-    log.info("Number of Publishers: {}", publisherRepository.count());
-    log.info("Number of Books for Eric: {}", ericSaved.getBooks().size());
-    log.info("Number of Books for Rod: {}", rodSaved.getBooks().size());
+    log.info("In Memory Publisher {} has {} books", publisher.getPublisherName(), publisher.getBooks().stream().map(Book::getTitle).toList());
   }
 }

@@ -1,3 +1,6 @@
 spring:
   application:
     name: SfudemyApplication
+  h2:
+    console:
+      enabled: true

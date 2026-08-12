@@ -1,6 +1,7 @@
 package com.emelgoza.sfudemy.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +16,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@ToString
+@ToString(exclude = {"books"})
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +32,12 @@ public class Author {
   private String firstName;
   private String lastName;
 
-  @ManyToMany(mappedBy = "authors")
+  @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
   @Builder.Default
   private Set<Book> books = new HashSet<>();
+
+  public void addBook(Book book) {
+    this.books.add(book);
+    book.getAuthors().add(this);
+  }
 }
