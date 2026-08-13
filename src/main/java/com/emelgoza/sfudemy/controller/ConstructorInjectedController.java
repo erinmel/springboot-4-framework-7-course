@@ -2,6 +2,7 @@ package com.emelgoza.sfudemy.controller;
 
 import com.emelgoza.sfudemy.service.GreetingService;
 
+// Preferred way of injecting dependencies, recommended
 public class ConstructorInjectedController {
   private final GreetingService greetingService;
 
