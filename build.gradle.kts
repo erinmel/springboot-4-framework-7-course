@@ -18,6 +18,7 @@ java {
     }
 }
 
+
 spotless.java {
     targetExclude("build/**")
     target("src/**/*.java")
