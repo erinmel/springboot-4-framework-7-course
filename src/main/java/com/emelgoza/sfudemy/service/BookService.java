@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 public interface BookService {
 
   Iterable<Book> findAll();
+
+  Iterable<Book> findPaginated(int page, int size);
+
+  Integer findTotalPages(long size);
 }

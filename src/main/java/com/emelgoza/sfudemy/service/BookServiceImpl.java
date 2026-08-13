@@ -17,4 +17,14 @@ public class BookServiceImpl implements BookService {
   public Iterable<Book> findAll() {
     return bookRepository.findAll();
   }
+
+  @Override
+  public Iterable<Book> findPaginated(int page, int size) {
+    return bookRepository.findPaginated(page, size);
+  }
+
+  @Override
+  public Integer findTotalPages(long size) {
+    return (int) Math.ceil((double) bookRepository.count() / size);
+  }
 }

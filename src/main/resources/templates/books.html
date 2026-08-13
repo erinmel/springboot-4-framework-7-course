@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SFU - Books</title>
+</head>
+<body>
+<h1>Books</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>ISBN</th>
+    </tr>
+    <tr th:each="book : ${books_list}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.publisher.publisherName}"></td>
+        <td th:text="${book.isbn}"></td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <td th:text="${books_currentPage} + '/' + ${books_totalPages}"></td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td><button th:onclick="'window.location.href=/books?page=' + ${books_currentPage - 1}" th:disabled="${books_currentPage <=1}">Previous</button></td>
+        <td><button th:onclick="'window.location.href=/books?page=' + ${books_currentPage + 1}" th:disabled="${books_currentPage + 1 >= books_totalPages}">Next</button></td>
+    </tr>
+</table>
+</body>
+</html>
