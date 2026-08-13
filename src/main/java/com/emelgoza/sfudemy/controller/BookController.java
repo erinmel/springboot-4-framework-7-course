@@ -17,7 +17,10 @@ public class BookController {
   }
 
   @RequestMapping("/books")
-  public String getBooks(Model model, @RequestParam int page) {
+  public String getBooks(Model model, @RequestParam(required = false) Integer page) {
+    if (page == null || page < 1) {
+      page = 1;
+    }
     model.addAttribute("books_list", bookService.findPaginated(page, PAGE_SIZE));
     model.addAttribute("books_totalPages", bookService.findTotalPages(PAGE_SIZE));
     model.addAttribute("books_currentPage", page);

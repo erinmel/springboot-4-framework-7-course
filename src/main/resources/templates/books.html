@@ -17,7 +17,7 @@
     <tr th:each="book : ${books_list}">
         <td th:text="${book.id}"></td>
         <td th:text="${book.title}"></td>
-        <td th:text="${book.publisher.publisherName}"></td>
+        <td th:text="${book.publisher?.publisherName}"></td>
         <td th:text="${book.isbn}"></td>
     </tr>
 </table>
@@ -28,8 +28,8 @@
     </tr>
     <tr></tr>
     <tr>
-        <td><button th:onclick="'window.location.href=/books?page=' + ${books_currentPage - 1}" th:disabled="${books_currentPage <=1}">Previous</button></td>
-        <td><button th:onclick="'window.location.href=/books?page=' + ${books_currentPage + 1}" th:disabled="${books_currentPage + 1 >= books_totalPages}">Next</button></td>
+        <td><button th:onclick="|window.location.href='/books?page=${books_currentPage - 1}'|" th:disabled="${books_currentPage <=1}">Previous</button></td>
+        <td><button th:onclick="|window.location.href='/books?page=${books_currentPage + 1}'|" th:disabled="${books_currentPage + 1 > books_totalPages}">Next</button></td>
     </tr>
 </table>
 </body>

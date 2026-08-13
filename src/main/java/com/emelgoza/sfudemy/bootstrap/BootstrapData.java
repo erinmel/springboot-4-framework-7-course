@@ -13,6 +13,26 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class BootstrapData implements CommandLineRunner {
+  private static final String[] BOOK_NAMES_PREFIX = {
+    "The Great Adventure of ",
+    "The Mystery of ",
+    "The Secret Life of ",
+    "The Chronicles of ",
+    "The Legend of "
+  };
+  private static final String[] BOOK_NAMES_SUFFIX = {
+    "the Lost City",
+    "the Hidden Treasure",
+    "the Forgotten Kingdom",
+    "the Enchanted Forest",
+    "the Time Traveler",
+    "the Haunted Mansion",
+    "the Magical Island",
+    "the Ancient Artifact",
+    "the Cursed Amulet",
+    "the Phantom Ship",
+    "the Secret Society"
+  };
 
   private final AuthorRepository authorRepository;
   private final BookRepository bookRepository;
@@ -61,6 +81,14 @@ public class BootstrapData implements CommandLineRunner {
     authorRepository.save(rod);
     bookRepository.save(ddd);
     bookRepository.save(noEJB);
+
+    for (int i = 0; i < 23; i++) {
+      String randomPrefix = BOOK_NAMES_PREFIX[(int) (Math.random() * BOOK_NAMES_PREFIX.length)];
+      String randomSuffix = BOOK_NAMES_SUFFIX[(int) (Math.random() * BOOK_NAMES_SUFFIX.length)];
+      String bookTitle = randomPrefix + " " + randomSuffix;
+      Book randomBook = Book.builder().title(bookTitle).isbn(String.valueOf(100000 + i)).build();
+      bookRepository.save(randomBook);
+    }
 
     log.info("Saved in Bootstrap");
     log.info("Number of Authors: {}", authorRepository.count());
