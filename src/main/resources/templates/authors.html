@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SFU - Authors</title>
+</head>
+<body>
+<h1>Authors</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Number of Books</th>
+    </tr>
+    <tr th:each="author : ${authors_list}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.firstName} + ' ' + ${author.lastName}"></td>
+        <td th:text="${author.books.size()}"></td>
+    </tr>
+</table>
+<br>
+</body>
+</html>
