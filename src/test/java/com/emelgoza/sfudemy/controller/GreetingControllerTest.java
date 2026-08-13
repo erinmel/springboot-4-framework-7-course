@@ -1,8 +1,7 @@
-package com.emelgoza.sfudemy;
+package com.emelgoza.sfudemy.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.emelgoza.sfudemy.controller.GreetingController;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
