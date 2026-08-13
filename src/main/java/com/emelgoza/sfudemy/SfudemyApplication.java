@@ -1,6 +1,6 @@
 package com.emelgoza.sfudemy;
 
-import com.emelgoza.sfudemy.controller.MyController;
+import com.emelgoza.sfudemy.controller.GreetingController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ public class SfudemyApplication {
   static void main(String[] args) {
     ApplicationContext ctx = SpringApplication.run(SfudemyApplication.class, args);
 
-    MyController controller = ctx.getBean(MyController.class);
+    GreetingController controller = ctx.getBean(GreetingController.class);
     log.info(controller.sayHello());
   }
 }
