@@ -1,12 +1,14 @@
 package com.emelgoza.sfudemy.controller;
 
 import com.emelgoza.sfudemy.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-// Better than property injection, but still not the best way of injecting dependencies, can throw
-// NullPointerException if the setter is not called, so it is not recommended
+@Controller
 public class SetterInjectedController {
   private GreetingService greetingService;
 
+  @Autowired
   public void setGreetingService(GreetingService greetingService) {
     this.greetingService = greetingService;
   }

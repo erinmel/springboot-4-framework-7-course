@@ -2,20 +2,15 @@ package com.emelgoza.sfudemy.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.emelgoza.sfudemy.service.GreetingServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 class PropertyInjectedControllerTest {
   private static final String GREETING = "Hello Everyone!";
 
-  PropertyInjectedController propertyInjectedController;
-
-  @BeforeEach
-  void setUp() {
-    propertyInjectedController = new PropertyInjectedController();
-    propertyInjectedController.greetingService = new GreetingServiceImpl();
-  }
+  @Autowired private PropertyInjectedController propertyInjectedController;
 
   @Test
   void sayHello() {

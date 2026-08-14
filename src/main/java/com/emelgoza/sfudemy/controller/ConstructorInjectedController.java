@@ -1,8 +1,9 @@
 package com.emelgoza.sfudemy.controller;
 
 import com.emelgoza.sfudemy.service.GreetingService;
+import org.springframework.stereotype.Controller;
 
-// Preferred way of injecting dependencies, recommended
+@Controller
 public class ConstructorInjectedController {
   private final GreetingService greetingService;
 
