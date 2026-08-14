@@ -1,4 +1,4 @@
-package com.emelgoza.sfudemy.controller;
+package com.emelgoza.sfudemy.controller.greeting;
 
 import com.emelgoza.sfudemy.service.GreetingService;
 import lombok.extern.slf4j.Slf4j;

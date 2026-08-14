@@ -1,5 +1,6 @@
-package com.emelgoza.sfudemy.service;
+package com.emelgoza.sfudemy.service.greeting;
 
+import com.emelgoza.sfudemy.service.GreetingService;
 import org.springframework.stereotype.Service;
 
 @Service
