@@ -1,0 +1,14 @@
+package com.emelgoza.sfudemy.service.environmentService;
+
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
+@Service
+@Profile("prod")
+public class ProdEnvironmentImpl implements EnvironmentService {
+
+  @Override
+  public String getEnvironment() {
+    return "prod";
+  }
+}

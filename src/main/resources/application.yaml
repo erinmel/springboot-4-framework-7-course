@@ -1,3 +1,7 @@
 spring:
   application:
     name: SfudemyApplication
+  profiles:
+    default: dev
+i18n:
+  language: ES

@@ -2,38 +2,34 @@ package com.emelgoza.sfudemy.controller.i18n;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
-abstract class Myi18NControllerTest {
-
-  @Autowired Myi18NController myi18NController;
-
-  protected abstract String expectedGreeting();
-
-  @Test
-  void sayHello() {
-    String response = myi18NController.sayHello();
-    assertEquals(expectedGreeting(), response);
-  }
-}
-
-@ActiveProfiles("ES")
 @SpringBootTest
-class Myi18NControllerESTest extends Myi18NControllerTest {
-  @Override
-  protected String expectedGreeting() {
-    return "Hola Mundo!";
-  }
-}
+class Myi18NControllerTest {
 
-@ActiveProfiles("EN")
-@SpringBootTest
-class Myi18NControllerENTest extends Myi18NControllerTest {
-  @Override
-  protected String expectedGreeting() {
-    return "Hello World!";
+  @Nested
+  @TestPropertySource(properties = "i18n.language=EN")
+  class WhenEnglish {
+    @Autowired Myi18NController myi18NController;
+
+    @Test
+    void sayHelloEn() {
+      assertEquals("Hello World!", myi18NController.sayHello());
+    }
+  }
+
+  @Nested
+  @TestPropertySource(properties = "i18n.language=ES")
+  class WhenSpanish {
+    @Autowired Myi18NController myi18NController;
+
+    @Test
+    void sayHelloEs() {
+      assertEquals("Hola Mundo!", myi18NController.sayHello());
+    }
   }
 }
