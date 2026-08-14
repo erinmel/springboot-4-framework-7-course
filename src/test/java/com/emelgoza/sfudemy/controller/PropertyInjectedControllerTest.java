@@ -8,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class PropertyInjectedControllerTest {
-  private static final String GREETING = "Hello Everyone!";
+  private static final String GREETING =
+      "Friends don't let friends to property inject dependencies!";
 
   @Autowired private PropertyInjectedController propertyInjectedController;
 

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SetterInjectedControllerTest {
-  private static final String GREETING = "Hello Everyone!";
+  private static final String GREETING = "Hola a todos!";
 
   @Autowired private SetterInjectedController setterInjectedController;
 
